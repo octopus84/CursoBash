@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Es importante que no haya espacios ni entre la variable y el signo igual, 
 #ni entre el signo igual y el valor que quieres asignar a tu variable.
 
@@ -40,8 +41,8 @@ echo '$LINENO indica el número de líneas que tiene nuestro script.: ' $LINENO
 echo 
 echo '$SHELL que indica el shell que estás ejecutando: '$SHELL
 echo '$EDITOR donde está indicado el editor por defecto. En mi caso vim.: '$EDITOR
-echo '$HOME la ruta del usuario. En mi caso /home/lorenzo: '$HOME
-echo '$USERNAME el nombre del usuario. En mi caso Lorenzo 😄: '$USERNAME
+echo '$HOME la ruta del usuario. En mi caso /home/octopus: '$HOME
+echo '$USERNAME el nombre del usuario. En mi caso Octavio 😄: '$USERNAME
 echo '$PATH la ruta por defecto donde encontrar binarios, etc.: '$PATH
 
 # ¿COMO UTILIZAR LOS ARGUMENTOS CON TU SCRIPT?
@@ -133,7 +134,7 @@ echo 'El resultado de la operación más la misma variable es igual a:' $((2*$re
 # serán de utilidad,
 cadena="mi cadena"
 echo
-echo 'Para extraer parte de un texto, es tan sencillo como echo ${cadena:1:2}:' ${cadena:1:4}
+echo 'Para extraer parte de un texto, es tan sencillo como echo ${cadena:1:4}:' ${cadena:1:4}
 echo
 echo 'En el caso de que lo que quieras hacer es sustituir texto la operación es echo ${cadena/de/xx}: ' ${cadena/de/xx}
 echo
