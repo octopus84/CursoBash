@@ -5,7 +5,7 @@
 # es While. Siguiendo con el ejemplo de Bart, esto se pondría 
 # de la siguiente forma,
 
-# i=1
+i=1
 while [[ $i -le 10 ]]
 do
     echo 'Mi primer Bucle ne Bash es Lindio' $i
