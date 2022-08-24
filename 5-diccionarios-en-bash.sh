@@ -35,19 +35,114 @@ telefonos[Diego]='+569123458'
 
 telefonos=([Pedro]='+569123456' [Juan]='+569123457' [Diego]='+569123458')
 
-echo ${telefonos[Juan]}
+echo
+echo "El telefono de Juan es : ${telefonos[Juan]}"
 
 echo
-echo ${telefonos[*]}
+echo "Todos los números de telefonos en una sola línea : ${telefonos[*]}"
 
 echo
 for i in ${telefonos[*]}; do
-    echo $i
+    echo "Los números de teléfonos son: "$i
 done
 
 # Mientras que si lo que quieres es obtener las claves, en este caso, los 
 # propietarios de esos números de teléfono, la instrucción a ejecutar será,
 
 echo
-echo ${!telefonos[@]}
+echo "Estos los nombres de los teléfonos en una sola línea ${!telefonos[@]}"
 
+echo
+echo "Estos los nombres de los teléfonos en una sola línea ${telefonos[@]}"
+
+# Igual que sucede en el caso de los valores, también puedes hacer lo mismo 
+# para el caso de las claves. Es decir, también puedes obtener todas las claves 
+# con echo ${!telefonos[@]}.
+# Si quiere iterar entre los valores del diccionario tan solo tienes que ejecutar,
+
+echo
+for i in ${!telefonos[@]}; do
+    echo "Las claves del diccionario son :" $i
+done
+
+# Y lo mismo puedes hacer para el caso de las claves, que además puedes combinar 
+# como puedes ver en el siguiente ejemplo,
+
+echo
+for i in ${!telefonos[@]}; do
+    echo "El telefono de $i es ${telefonos[$i]}"
+done
+
+# También, como hiciste con los arrays en Bash, es posible extraer varios valores 
+# de golpe. Por ejemplo,
+
+echo
+echo "Los Primeros 2 telefonos son: ${telefonos[@]:1:2}"
+
+
+# CUANTOS ELEMENTOS TIENE EL DICCIONARIO
+# Este procedimiento es exactamente igual que el que utilizaste con los arrays, 
+# simplemente tienes que utilizar '#'. Así, para saber cuantos teléfonos tienes 
+# guardados, tan solo tienes que ejecutar,
+
+echo
+echo "La cantidad de números es: ${#telefonos[@]}"
+
+
+# OPERACIONES CON DICCIONARIOS
+# Para eliminar un pareja clave valor de tu diccionario, tienes que ejecutar 
+# la siguiente instrucción,
+
+echo
+unset telefonos[Juan]
+
+echo "Los números de teléfonos que van quedando son ${telefonos[*]}"
+
+echo
+for i in ${!telefonos[*]}; do
+    echo "Los números de teléfonos que van quedando son de $i : ${telefonos[$i]}"
+done
+
+
+# Por supuesto que puedes añadir nuevos elementos a nuestro diccionario, como has 
+# visto al principio de este artículo. Pero no solo esto, si no que además puedes 
+# añadir varios en una única línea,
+
+
+telefonos+=([Ana]=+56900124569 [Irene]=+56900124569)
+echo
+for i in ${!telefonos[*]}; do
+    echo "Un total de ${#telefonos[*]} números telefónicos que son de $i : ${telefonos[$i]}"
+done
+
+
+# Indicarte que si intentas añadir una pareja clave valor, en el que la clave ya existe, lo único 
+# que harás será sustituir su valor. En este último caso, si ahora ejecutas telefonos+=[Irene]=777 
+# lo que conseguirás será cambiar el teléfono de Irene.
+
+# Para eliminar un diccionario, tienes que utilizar de nuevo unset. Así si quieres borrar la 
+# agenda de teléfonos que has estado utilizando de ejemplo en este capítulo del tutorial, 
+# tendrás que ejecutar la siguiente instrucción,
+
+echo
+unset telefonos
+echo "El diccionario 'telefonos' ha sido borrado: ${telefonos[*]}  "
+
+
+# CUIDADO CON LOS ESPACIOS
+# En Bash siempre tienes que tener cuidado con los espacios, pero en el caso de los índices 
+# de los diccionarios deberás tener un especial cuidado, para no cometer un fallo.
+
+# Y es que es posible definir telefonos+=([Ana Maria]=456), sin embargo, si intentas ejecutar 
+# unset telefonos[Ana Maria], te arrojará un error. Para ser correcto debes poner entre comillas, 
+# ya sean simples o dobles.
+
+### Se debe corregir aseveración, ya que no funciona declaración de clave
+### de nombre compuesto por espacio incluso si se utiliza comillas simples o dobles.
+echo
+telefonos+=([Ana Maria]='+5691237777')
+echo "Últimos valores probados ${telefonos[@]}"
+
+echo
+clave='Juan Andres'
+unset telefonos["$clave"]
